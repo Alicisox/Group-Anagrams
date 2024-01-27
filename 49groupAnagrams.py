@@ -13,8 +13,26 @@ class Solution:
                 if n == countDict:
                     res[i].append(astr)
         return res
+    
+    def groupAnagrams_bruteforcev2(self, strs):
+        res = {}
+        for astr in strs:
+            countDict = {}
+            for s in astr:
+                countDict[s] = 1 + countDict.get(s, 0) 
+            key = tuple(sorted(countDict.items()))
+            if key not in res:
+                res[key] = [astr]
+            else:
+                res[key].append(astr)
+        return list(res.values())
+
 
 # Testing
 strs = ["eat","tea","tan","ate","nat","bat"]
 
-print(Solution().groupAnagrams(strs))
+print(Solution().groupAnagrams_bruteforce(strs))
+
+print(Solution().groupAnagrams_bruteforcev2(strs))
+
+print(sorted("eat"))
