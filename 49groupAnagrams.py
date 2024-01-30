@@ -27,12 +27,26 @@ class Solution:
                 res[key].append(astr)
         return list(res.values())
 
+    def groupAnagrams(self, strs):
+        res = {}
+        for s in strs:
+            key = tuple(sorted(s))
+            if key not in res:
+                res[key] = [s]
+            else:
+                res[key].append(s)
+        return list(res.values())
+
 
 # Testing
+#strs = [""] 
+    
+#strs = ["a"]
+
 strs = ["eat","tea","tan","ate","nat","bat"]
 
 print(Solution().groupAnagrams_bruteforce(strs))
 
 print(Solution().groupAnagrams_bruteforcev2(strs))
 
-print(sorted("eat"))
+print(Solution().groupAnagrams(strs))
