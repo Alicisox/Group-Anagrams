@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 class Solution:
     def groupAnagrams_bruteforce(self, strs):
         res = []
@@ -36,7 +38,22 @@ class Solution:
             else:
                 res[key].append(s)
         return list(res.values())
-
+    
+    def groupAnagrams_defaultdict(self, strs):
+        res = defaultdict(list)
+        for s in strs:
+            key = tuple(sorted(s))
+            res[key].append(s)
+        return list(res.values())
+    
+    def groupAnagrams_unSorted(self, strs):
+        res = defaultdict(list)
+        for s in strs:
+            count = [0] * 26 
+            for c in s:
+                count[ord(c)-ord("a")] += 1
+            res[tuple(count)].append(s)
+        return list(res.values())
 
 # Testing
 #strs = [""] 
@@ -50,3 +67,7 @@ print(Solution().groupAnagrams_bruteforce(strs))
 print(Solution().groupAnagrams_bruteforcev2(strs))
 
 print(Solution().groupAnagrams(strs))
+
+print(Solution().groupAnagrams_defaultdict(strs))
+
+print(Solution().groupAnagrams_unSorted(strs))
